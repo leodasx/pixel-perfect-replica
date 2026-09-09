@@ -58,11 +58,12 @@ function SeatSelection() {
   });
 
   const seatMap = useMemo(() => {
-    const map = new Map<string, (typeof seats)[number]>();
     const seats = seatsQuery.data ?? [];
+    const map = new Map<string, (typeof seats)[number]>();
     for (const s of seats) map.set(s.seat_number, s);
     return map;
   }, [seatsQuery.data]);
+
 
   const selectedSeats = useMemo(
     () => (seatsQuery.data ?? []).filter((s) => selected.includes(s.id)),
