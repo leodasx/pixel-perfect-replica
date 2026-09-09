@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MoviesRouteImport } from './routes/movies'
+import { Route as PaymentRouteImport } from './routes/payment'
+import { Route as SummaryRouteImport } from './routes/summary'
+import { Route as BookShowIdRouteImport } from './routes/book.$showId'
+import { Route as ConfirmationBookingIdRouteImport } from './routes/confirmation.$bookingId'
+import { Route as MovieMovieIdRouteImport } from './routes/movie.$movieId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoviesRoute = MoviesRouteImport.update({
+  id: '/movies',
+  path: '/movies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentRoute = PaymentRouteImport.update({
+  id: '/payment',
+  path: '/payment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SummaryRoute = SummaryRouteImport.update({
+  id: '/summary',
+  path: '/summary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookShowIdRoute = BookShowIdRouteImport.update({
+  id: '/book/$showId',
+  path: '/book/$showId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfirmationBookingIdRoute = ConfirmationBookingIdRouteImport.update({
+  id: '/confirmation/$bookingId',
+  path: '/confirmation/$bookingId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MovieMovieIdRoute = MovieMovieIdRouteImport.update({
+  id: '/movie/$movieId',
+  path: '/movie/$movieId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/movies': typeof MoviesRoute
+  '/payment': typeof PaymentRoute
+  '/summary': typeof SummaryRoute
+  '/book/$showId': typeof BookShowIdRoute
+  '/confirmation/$bookingId': typeof ConfirmationBookingIdRoute
+  '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/movies': typeof MoviesRoute
+  '/payment': typeof PaymentRoute
+  '/summary': typeof SummaryRoute
+  '/book/$showId': typeof BookShowIdRoute
+  '/confirmation/$bookingId': typeof ConfirmationBookingIdRoute
+  '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/movies': typeof MoviesRoute
+  '/payment': typeof PaymentRoute
+  '/summary': typeof SummaryRoute
+  '/book/$showId': typeof BookShowIdRoute
+  '/confirmation/$bookingId': typeof ConfirmationBookingIdRoute
+  '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/movies'
+    | '/payment'
+    | '/summary'
+    | '/book/$showId'
+    | '/confirmation/$bookingId'
+    | '/movie/$movieId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/movies'
+    | '/payment'
+    | '/summary'
+    | '/book/$showId'
+    | '/confirmation/$bookingId'
+    | '/movie/$movieId'
+  id:
+    | '__root__'
+    | '/'
+    | '/movies'
+    | '/payment'
+    | '/summary'
+    | '/book/$showId'
+    | '/confirmation/$bookingId'
+    | '/movie/$movieId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MoviesRoute: typeof MoviesRoute
+  PaymentRoute: typeof PaymentRoute
+  SummaryRoute: typeof SummaryRoute
+  BookShowIdRoute: typeof BookShowIdRoute
+  ConfirmationBookingIdRoute: typeof ConfirmationBookingIdRoute
+  MovieMovieIdRoute: typeof MovieMovieIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movies': {
+      id: '/movies'
+      path: '/movies'
+      fullPath: '/movies'
+      preLoaderRoute: typeof MoviesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/payment': {
+      id: '/payment'
+      path: '/payment'
+      fullPath: '/payment'
+      preLoaderRoute: typeof PaymentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/summary': {
+      id: '/summary'
+      path: '/summary'
+      fullPath: '/summary'
+      preLoaderRoute: typeof SummaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book/$showId': {
+      id: '/book/$showId'
+      path: '/book/$showId'
+      fullPath: '/book/$showId'
+      preLoaderRoute: typeof BookShowIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confirmation/$bookingId': {
+      id: '/confirmation/$bookingId'
+      path: '/confirmation/$bookingId'
+      fullPath: '/confirmation/$bookingId'
+      preLoaderRoute: typeof ConfirmationBookingIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movie/$movieId': {
+      id: '/movie/$movieId'
+      path: '/movie/$movieId'
+      fullPath: '/movie/$movieId'
+      preLoaderRoute: typeof MovieMovieIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MoviesRoute: MoviesRoute,
+  PaymentRoute: PaymentRoute,
+  SummaryRoute: SummaryRoute,
+  BookShowIdRoute: BookShowIdRoute,
+  ConfirmationBookingIdRoute: ConfirmationBookingIdRoute,
+  MovieMovieIdRoute: MovieMovieIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
