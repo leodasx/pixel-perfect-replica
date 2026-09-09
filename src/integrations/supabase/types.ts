@@ -14,16 +14,330 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      booking_seats: {
+        Row: {
+          booking_id: string
+          id: string
+          price: number
+          seat_id: string
+        }
+        Insert: {
+          booking_id: string
+          id?: string
+          price?: number
+          seat_id: string
+        }
+        Update: {
+          booking_id?: string
+          id?: string
+          price?: number
+          seat_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_seats_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "booking_seats_seat_id_fkey"
+            columns: ["seat_id"]
+            isOneToOne: false
+            referencedRelation: "seats"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          booking_id: string
+          booking_status: Database["public"]["Enums"]["booking_status"]
+          created_at: string
+          id: string
+          payment_status: Database["public"]["Enums"]["payment_status"]
+          show_id: string
+          total_amount: number
+          user_id: string
+        }
+        Insert: {
+          booking_id: string
+          booking_status?: Database["public"]["Enums"]["booking_status"]
+          created_at?: string
+          id?: string
+          payment_status?: Database["public"]["Enums"]["payment_status"]
+          show_id: string
+          total_amount?: number
+          user_id: string
+        }
+        Update: {
+          booking_id?: string
+          booking_status?: Database["public"]["Enums"]["booking_status"]
+          created_at?: string
+          id?: string
+          payment_status?: Database["public"]["Enums"]["payment_status"]
+          show_id?: string
+          total_amount?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_show_id_fkey"
+            columns: ["show_id"]
+            isOneToOne: false
+            referencedRelation: "shows"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      movies: {
+        Row: {
+          created_at: string
+          description: string
+          duration: number
+          genre: string
+          id: string
+          language: string
+          poster: string
+          rating: number
+          release_date: string | null
+          title: string
+          trailer_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          duration?: number
+          genre?: string
+          id?: string
+          language?: string
+          poster?: string
+          rating?: number
+          release_date?: string | null
+          title: string
+          trailer_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          duration?: number
+          genre?: string
+          id?: string
+          language?: string
+          poster?: string
+          rating?: number
+          release_date?: string | null
+          title?: string
+          trailer_url?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          phone: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      seats: {
+        Row: {
+          id: string
+          price: number
+          seat_number: string
+          seat_type: Database["public"]["Enums"]["seat_type"]
+          show_id: string
+          status: Database["public"]["Enums"]["seat_status"]
+        }
+        Insert: {
+          id?: string
+          price?: number
+          seat_number: string
+          seat_type?: Database["public"]["Enums"]["seat_type"]
+          show_id: string
+          status?: Database["public"]["Enums"]["seat_status"]
+        }
+        Update: {
+          id?: string
+          price?: number
+          seat_number?: string
+          seat_type?: Database["public"]["Enums"]["seat_type"]
+          show_id?: string
+          status?: Database["public"]["Enums"]["seat_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seats_show_id_fkey"
+            columns: ["show_id"]
+            isOneToOne: false
+            referencedRelation: "shows"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shows: {
+        Row: {
+          created_at: string
+          id: string
+          movie_id: string
+          show_date: string
+          show_time: string
+          theatre_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          movie_id: string
+          show_date: string
+          show_time: string
+          theatre_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          movie_id?: string
+          show_date?: string
+          show_time?: string
+          theatre_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shows_movie_id_fkey"
+            columns: ["movie_id"]
+            isOneToOne: false
+            referencedRelation: "movies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "shows_theatre_id_fkey"
+            columns: ["theatre_id"]
+            isOneToOne: false
+            referencedRelation: "theatres"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      theatres: {
+        Row: {
+          amenity: string
+          created_at: string
+          id: string
+          location: string
+          name: string
+        }
+        Insert: {
+          amenity?: string
+          created_at?: string
+          id?: string
+          location?: string
+          name: string
+        }
+        Update: {
+          amenity?: string
+          created_at?: string
+          id?: string
+          location?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      watchlist: {
+        Row: {
+          created_at: string
+          id: string
+          movie_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          movie_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          movie_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "watchlist_movie_id_fkey"
+            columns: ["movie_id"]
+            isOneToOne: false
+            referencedRelation: "movies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_booking: {
+        Args: { p_discount?: number; p_seat_ids: string[]; p_show_id: string }
+        Returns: {
+          booking_uuid: string
+          reference: string
+          total: number
+        }[]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      booking_status: "confirmed" | "cancelled"
+      payment_status: "pending" | "paid" | "failed"
+      seat_status: "available" | "booked"
+      seat_type: "premium" | "normal"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +464,12 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      booking_status: ["confirmed", "cancelled"],
+      payment_status: ["pending", "paid", "failed"],
+      seat_status: ["available", "booked"],
+      seat_type: ["premium", "normal"],
+    },
   },
 } as const
