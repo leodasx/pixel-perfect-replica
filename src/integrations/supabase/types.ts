@@ -316,6 +316,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      claim_admin: { Args: never; Returns: boolean }
       create_booking: {
         Args: { p_discount?: number; p_seat_ids: string[]; p_show_id: string }
         Returns: {

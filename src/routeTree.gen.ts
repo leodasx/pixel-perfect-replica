@@ -10,10 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MoviesRouteImport } from './routes/movies'
+import { Route as MyBookingsRouteImport } from './routes/my-bookings'
 import { Route as PaymentRouteImport } from './routes/payment'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as SummaryRouteImport } from './routes/summary'
+import { Route as WatchlistRouteImport } from './routes/watchlist'
 import { Route as BookShowIdRouteImport } from './routes/book.$showId'
+import { Route as BookingBookingIdRouteImport } from './routes/booking.$bookingId'
 import { Route as ConfirmationBookingIdRouteImport } from './routes/confirmation.$bookingId'
 import { Route as MovieMovieIdRouteImport } from './routes/movie.$movieId'
 
@@ -22,9 +29,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MoviesRoute = MoviesRouteImport.update({
   id: '/movies',
   path: '/movies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyBookingsRoute = MyBookingsRouteImport.update({
+  id: '/my-bookings',
+  path: '/my-bookings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PaymentRoute = PaymentRouteImport.update({
@@ -32,14 +54,34 @@ const PaymentRoute = PaymentRouteImport.update({
   path: '/payment',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SummaryRoute = SummaryRouteImport.update({
   id: '/summary',
   path: '/summary',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WatchlistRoute = WatchlistRouteImport.update({
+  id: '/watchlist',
+  path: '/watchlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BookShowIdRoute = BookShowIdRouteImport.update({
   id: '/book/$showId',
   path: '/book/$showId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingBookingIdRoute = BookingBookingIdRouteImport.update({
+  id: '/booking/$bookingId',
+  path: '/booking/$bookingId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConfirmationBookingIdRoute = ConfirmationBookingIdRouteImport.update({
@@ -55,29 +97,50 @@ const MovieMovieIdRoute = MovieMovieIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/login': typeof LoginRoute
   '/movies': typeof MoviesRoute
+  '/my-bookings': typeof MyBookingsRoute
   '/payment': typeof PaymentRoute
+  '/profile': typeof ProfileRoute
+  '/signup': typeof SignupRoute
   '/summary': typeof SummaryRoute
+  '/watchlist': typeof WatchlistRoute
   '/book/$showId': typeof BookShowIdRoute
+  '/booking/$bookingId': typeof BookingBookingIdRoute
   '/confirmation/$bookingId': typeof ConfirmationBookingIdRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/login': typeof LoginRoute
   '/movies': typeof MoviesRoute
+  '/my-bookings': typeof MyBookingsRoute
   '/payment': typeof PaymentRoute
+  '/profile': typeof ProfileRoute
+  '/signup': typeof SignupRoute
   '/summary': typeof SummaryRoute
+  '/watchlist': typeof WatchlistRoute
   '/book/$showId': typeof BookShowIdRoute
+  '/booking/$bookingId': typeof BookingBookingIdRoute
   '/confirmation/$bookingId': typeof ConfirmationBookingIdRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/login': typeof LoginRoute
   '/movies': typeof MoviesRoute
+  '/my-bookings': typeof MyBookingsRoute
   '/payment': typeof PaymentRoute
+  '/profile': typeof ProfileRoute
+  '/signup': typeof SignupRoute
   '/summary': typeof SummaryRoute
+  '/watchlist': typeof WatchlistRoute
   '/book/$showId': typeof BookShowIdRoute
+  '/booking/$bookingId': typeof BookingBookingIdRoute
   '/confirmation/$bookingId': typeof ConfirmationBookingIdRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
 }
@@ -85,38 +148,66 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
+    | '/login'
     | '/movies'
+    | '/my-bookings'
     | '/payment'
+    | '/profile'
+    | '/signup'
     | '/summary'
+    | '/watchlist'
     | '/book/$showId'
+    | '/booking/$bookingId'
     | '/confirmation/$bookingId'
     | '/movie/$movieId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
+    | '/login'
     | '/movies'
+    | '/my-bookings'
     | '/payment'
+    | '/profile'
+    | '/signup'
     | '/summary'
+    | '/watchlist'
     | '/book/$showId'
+    | '/booking/$bookingId'
     | '/confirmation/$bookingId'
     | '/movie/$movieId'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/login'
     | '/movies'
+    | '/my-bookings'
     | '/payment'
+    | '/profile'
+    | '/signup'
     | '/summary'
+    | '/watchlist'
     | '/book/$showId'
+    | '/booking/$bookingId'
     | '/confirmation/$bookingId'
     | '/movie/$movieId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  LoginRoute: typeof LoginRoute
   MoviesRoute: typeof MoviesRoute
+  MyBookingsRoute: typeof MyBookingsRoute
   PaymentRoute: typeof PaymentRoute
+  ProfileRoute: typeof ProfileRoute
+  SignupRoute: typeof SignupRoute
   SummaryRoute: typeof SummaryRoute
+  WatchlistRoute: typeof WatchlistRoute
   BookShowIdRoute: typeof BookShowIdRoute
+  BookingBookingIdRoute: typeof BookingBookingIdRoute
   ConfirmationBookingIdRoute: typeof ConfirmationBookingIdRoute
   MovieMovieIdRoute: typeof MovieMovieIdRoute
 }
@@ -130,11 +221,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/movies': {
       id: '/movies'
       path: '/movies'
       fullPath: '/movies'
       preLoaderRoute: typeof MoviesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-bookings': {
+      id: '/my-bookings'
+      path: '/my-bookings'
+      fullPath: '/my-bookings'
+      preLoaderRoute: typeof MyBookingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/payment': {
@@ -144,6 +256,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaymentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/summary': {
       id: '/summary'
       path: '/summary'
@@ -151,11 +277,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SummaryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/watchlist': {
+      id: '/watchlist'
+      path: '/watchlist'
+      fullPath: '/watchlist'
+      preLoaderRoute: typeof WatchlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/book/$showId': {
       id: '/book/$showId'
       path: '/book/$showId'
       fullPath: '/book/$showId'
       preLoaderRoute: typeof BookShowIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking/$bookingId': {
+      id: '/booking/$bookingId'
+      path: '/booking/$bookingId'
+      fullPath: '/booking/$bookingId'
+      preLoaderRoute: typeof BookingBookingIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/confirmation/$bookingId': {
@@ -177,10 +317,17 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  LoginRoute: LoginRoute,
   MoviesRoute: MoviesRoute,
+  MyBookingsRoute: MyBookingsRoute,
   PaymentRoute: PaymentRoute,
+  ProfileRoute: ProfileRoute,
+  SignupRoute: SignupRoute,
   SummaryRoute: SummaryRoute,
+  WatchlistRoute: WatchlistRoute,
   BookShowIdRoute: BookShowIdRoute,
+  BookingBookingIdRoute: BookingBookingIdRoute,
   ConfirmationBookingIdRoute: ConfirmationBookingIdRoute,
   MovieMovieIdRoute: MovieMovieIdRoute,
 }
