@@ -14,8 +14,10 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as MoviesRouteImport } from './routes/movies'
 import { Route as MyBookingsRouteImport } from './routes/my-bookings'
 import { Route as PaymentRouteImport } from './routes/payment'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as SummaryRouteImport } from './routes/summary'
+import { Route as WatchlistRouteImport } from './routes/watchlist'
 import { Route as BookShowIdRouteImport } from './routes/book.$showId'
 import { Route as BookingBookingIdRouteImport } from './routes/booking.$bookingId'
 import { Route as ConfirmationBookingIdRouteImport } from './routes/confirmation.$bookingId'
@@ -46,6 +48,11 @@ const PaymentRoute = PaymentRouteImport.update({
   path: '/payment',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
@@ -54,6 +61,11 @@ const SignupRoute = SignupRouteImport.update({
 const SummaryRoute = SummaryRouteImport.update({
   id: '/summary',
   path: '/summary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WatchlistRoute = WatchlistRouteImport.update({
+  id: '/watchlist',
+  path: '/watchlist',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookShowIdRoute = BookShowIdRouteImport.update({
@@ -83,8 +95,10 @@ export interface FileRoutesByFullPath {
   '/movies': typeof MoviesRoute
   '/my-bookings': typeof MyBookingsRoute
   '/payment': typeof PaymentRoute
+  '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/summary': typeof SummaryRoute
+  '/watchlist': typeof WatchlistRoute
   '/book/$showId': typeof BookShowIdRoute
   '/booking/$bookingId': typeof BookingBookingIdRoute
   '/confirmation/$bookingId': typeof ConfirmationBookingIdRoute
@@ -96,8 +110,10 @@ export interface FileRoutesByTo {
   '/movies': typeof MoviesRoute
   '/my-bookings': typeof MyBookingsRoute
   '/payment': typeof PaymentRoute
+  '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/summary': typeof SummaryRoute
+  '/watchlist': typeof WatchlistRoute
   '/book/$showId': typeof BookShowIdRoute
   '/booking/$bookingId': typeof BookingBookingIdRoute
   '/confirmation/$bookingId': typeof ConfirmationBookingIdRoute
@@ -110,8 +126,10 @@ export interface FileRoutesById {
   '/movies': typeof MoviesRoute
   '/my-bookings': typeof MyBookingsRoute
   '/payment': typeof PaymentRoute
+  '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/summary': typeof SummaryRoute
+  '/watchlist': typeof WatchlistRoute
   '/book/$showId': typeof BookShowIdRoute
   '/booking/$bookingId': typeof BookingBookingIdRoute
   '/confirmation/$bookingId': typeof ConfirmationBookingIdRoute
@@ -125,8 +143,10 @@ export interface FileRouteTypes {
     | '/movies'
     | '/my-bookings'
     | '/payment'
+    | '/profile'
     | '/signup'
     | '/summary'
+    | '/watchlist'
     | '/book/$showId'
     | '/booking/$bookingId'
     | '/confirmation/$bookingId'
@@ -138,8 +158,10 @@ export interface FileRouteTypes {
     | '/movies'
     | '/my-bookings'
     | '/payment'
+    | '/profile'
     | '/signup'
     | '/summary'
+    | '/watchlist'
     | '/book/$showId'
     | '/booking/$bookingId'
     | '/confirmation/$bookingId'
@@ -151,8 +173,10 @@ export interface FileRouteTypes {
     | '/movies'
     | '/my-bookings'
     | '/payment'
+    | '/profile'
     | '/signup'
     | '/summary'
+    | '/watchlist'
     | '/book/$showId'
     | '/booking/$bookingId'
     | '/confirmation/$bookingId'
@@ -165,8 +189,10 @@ export interface RootRouteChildren {
   MoviesRoute: typeof MoviesRoute
   MyBookingsRoute: typeof MyBookingsRoute
   PaymentRoute: typeof PaymentRoute
+  ProfileRoute: typeof ProfileRoute
   SignupRoute: typeof SignupRoute
   SummaryRoute: typeof SummaryRoute
+  WatchlistRoute: typeof WatchlistRoute
   BookShowIdRoute: typeof BookShowIdRoute
   BookingBookingIdRoute: typeof BookingBookingIdRoute
   ConfirmationBookingIdRoute: typeof ConfirmationBookingIdRoute
@@ -210,6 +236,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaymentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/signup': {
       id: '/signup'
       path: '/signup'
@@ -222,6 +255,13 @@ declare module '@tanstack/react-router' {
       path: '/summary'
       fullPath: '/summary'
       preLoaderRoute: typeof SummaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/watchlist': {
+      id: '/watchlist'
+      path: '/watchlist'
+      fullPath: '/watchlist'
+      preLoaderRoute: typeof WatchlistRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book/$showId': {
@@ -261,8 +301,10 @@ const rootRouteChildren: RootRouteChildren = {
   MoviesRoute: MoviesRoute,
   MyBookingsRoute: MyBookingsRoute,
   PaymentRoute: PaymentRoute,
+  ProfileRoute: ProfileRoute,
   SignupRoute: SignupRoute,
   SummaryRoute: SummaryRoute,
+  WatchlistRoute: WatchlistRoute,
   BookShowIdRoute: BookShowIdRoute,
   BookingBookingIdRoute: BookingBookingIdRoute,
   ConfirmationBookingIdRoute: ConfirmationBookingIdRoute,
