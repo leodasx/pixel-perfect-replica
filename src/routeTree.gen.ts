@@ -10,9 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MoviesRouteImport } from './routes/movies'
 import { Route as MyBookingsRouteImport } from './routes/my-bookings'
 import { Route as PaymentRouteImport } from './routes/payment'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as SummaryRouteImport } from './routes/summary'
 import { Route as BookShowIdRouteImport } from './routes/book.$showId'
 import { Route as BookingBookingIdRouteImport } from './routes/booking.$bookingId'
@@ -22,6 +24,11 @@ import { Route as MovieMovieIdRouteImport } from './routes/movie.$movieId'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoviesRoute = MoviesRouteImport.update({
@@ -37,6 +44,11 @@ const MyBookingsRoute = MyBookingsRouteImport.update({
 const PaymentRoute = PaymentRouteImport.update({
   id: '/payment',
   path: '/payment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SummaryRoute = SummaryRouteImport.update({
@@ -67,9 +79,11 @@ const MovieMovieIdRoute = MovieMovieIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/movies': typeof MoviesRoute
   '/my-bookings': typeof MyBookingsRoute
   '/payment': typeof PaymentRoute
+  '/signup': typeof SignupRoute
   '/summary': typeof SummaryRoute
   '/book/$showId': typeof BookShowIdRoute
   '/booking/$bookingId': typeof BookingBookingIdRoute
@@ -78,9 +92,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/movies': typeof MoviesRoute
   '/my-bookings': typeof MyBookingsRoute
   '/payment': typeof PaymentRoute
+  '/signup': typeof SignupRoute
   '/summary': typeof SummaryRoute
   '/book/$showId': typeof BookShowIdRoute
   '/booking/$bookingId': typeof BookingBookingIdRoute
@@ -90,9 +106,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/movies': typeof MoviesRoute
   '/my-bookings': typeof MyBookingsRoute
   '/payment': typeof PaymentRoute
+  '/signup': typeof SignupRoute
   '/summary': typeof SummaryRoute
   '/book/$showId': typeof BookShowIdRoute
   '/booking/$bookingId': typeof BookingBookingIdRoute
@@ -103,9 +121,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
     | '/movies'
     | '/my-bookings'
     | '/payment'
+    | '/signup'
     | '/summary'
     | '/book/$showId'
     | '/booking/$bookingId'
@@ -114,9 +134,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/login'
     | '/movies'
     | '/my-bookings'
     | '/payment'
+    | '/signup'
     | '/summary'
     | '/book/$showId'
     | '/booking/$bookingId'
@@ -125,9 +147,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/login'
     | '/movies'
     | '/my-bookings'
     | '/payment'
+    | '/signup'
     | '/summary'
     | '/book/$showId'
     | '/booking/$bookingId'
@@ -137,9 +161,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
   MoviesRoute: typeof MoviesRoute
   MyBookingsRoute: typeof MyBookingsRoute
   PaymentRoute: typeof PaymentRoute
+  SignupRoute: typeof SignupRoute
   SummaryRoute: typeof SummaryRoute
   BookShowIdRoute: typeof BookShowIdRoute
   BookingBookingIdRoute: typeof BookingBookingIdRoute
@@ -154,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/movies': {
@@ -175,6 +208,13 @@ declare module '@tanstack/react-router' {
       path: '/payment'
       fullPath: '/payment'
       preLoaderRoute: typeof PaymentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/summary': {
@@ -217,9 +257,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
   MoviesRoute: MoviesRoute,
   MyBookingsRoute: MyBookingsRoute,
   PaymentRoute: PaymentRoute,
+  SignupRoute: SignupRoute,
   SummaryRoute: SummaryRoute,
   BookShowIdRoute: BookShowIdRoute,
   BookingBookingIdRoute: BookingBookingIdRoute,
