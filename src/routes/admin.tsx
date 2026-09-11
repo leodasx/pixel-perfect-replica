@@ -204,7 +204,10 @@ function AdminPage() {
                 aria-label="Delete movie"
                 onClick={async () => {
                   const { error } = await supabase.from("movies").delete().eq("id", m.id);
-                  if (error) return toast.error("Could not delete this movie.");
+                  if (error) {
+            toast.error("Could not delete this movie.");
+            return;
+          }
                   toast.success("Movie deleted.");
                   invalidate(["admin-movies", "movies", "admin-shows"]);
                 }}
@@ -248,7 +251,10 @@ function AdminPage() {
                 aria-label="Delete theatre"
                 onClick={async () => {
                   const { error } = await supabase.from("theatres").delete().eq("id", t.id);
-                  if (error) return toast.error("Could not delete this theatre.");
+                  if (error) {
+            toast.error("Could not delete this theatre.");
+            return;
+          }
                   toast.success("Theatre deleted.");
                   invalidate(["admin-theatres", "admin-shows"]);
                 }}
@@ -367,7 +373,10 @@ function MovieDialog({
     const res = movie?.id
       ? await supabase.from("movies").update(payload).eq("id", movie.id)
       : await supabase.from("movies").insert(payload);
-    if (res.error) return toast.error("Could not save the movie.");
+    if (res.error) {
+            toast.error("Could not save the movie.");
+            return;
+          }
     toast.success("Movie saved.");
     setOpen(false);
     onSaved();
@@ -466,7 +475,10 @@ function TheatreDialog({
     const res = theatre?.id
       ? await supabase.from("theatres").update(form).eq("id", theatre.id)
       : await supabase.from("theatres").insert(form);
-    if (res.error) return toast.error("Could not save the theatre.");
+    if (res.error) {
+            toast.error("Could not save the theatre.");
+            return;
+          }
     toast.success("Theatre saved.");
     setOpen(false);
     onSaved();
@@ -522,7 +534,10 @@ function ShowDialog({
       return;
     }
     const { error } = await supabase.from("shows").insert(form);
-    if (error) return toast.error("Could not create this show. It may already exist.");
+    if (error) {
+            toast.error("Could not create this show. It may already exist.");
+            return;
+          }
     toast.success("Show created with a fresh set of seats.");
     setOpen(false);
     onSaved();
@@ -647,7 +662,10 @@ function ShowRow({
         aria-label="Delete show"
         onClick={async () => {
           const { error } = await supabase.from("shows").delete().eq("id", show.id);
-          if (error) return toast.error("Could not delete this show — it may have bookings.");
+          if (error) {
+            toast.error("Could not delete this show — it may have bookings.");
+            return;
+          }
           toast.success("Show deleted.");
           onDeleted();
         }}
