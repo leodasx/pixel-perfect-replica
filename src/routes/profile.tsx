@@ -73,7 +73,10 @@ function ProfilePage() {
       .from("profiles")
       .upsert({ user_id: user.id, name, phone, email: user.email ?? "" }, { onConflict: "user_id" });
     setSaving(false);
-    if (error) return toast.error("Could not save your profile.");
+    if (error) {
+      toast.error("Could not save your profile.");
+      return;
+    }
     toast.success("Profile saved.");
     void queryClient.invalidateQueries({ queryKey: ["profile", user.id] });
   };

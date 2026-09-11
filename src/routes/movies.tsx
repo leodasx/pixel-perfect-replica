@@ -7,7 +7,7 @@ import { MovieCard } from "@/components/MovieCard";
 import { LoadingState, ErrorState, EmptyState } from "@/components/PageState";
 import { Input } from "@/components/ui/input";
 
-type MovieSearch = { q?: string };
+type MovieSearch = { q: string | undefined };
 
 export const Route = createFileRoute("/movies")({
   validateSearch: (search: Record<string, unknown>): MovieSearch => ({

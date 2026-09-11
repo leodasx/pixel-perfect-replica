@@ -115,13 +115,19 @@ function MovieDetails() {
     }
     if (watchlistQuery.data) {
       const { error } = await supabase.from("watchlist").delete().eq("id", watchlistQuery.data.id);
-      if (error) return toast.error("Could not update watchlist.");
+      if (error) {
+        toast.error("Could not update watchlist.");
+        return;
+      }
       toast.success("Removed from watchlist.");
     } else {
       const { error } = await supabase
         .from("watchlist")
         .insert({ user_id: user.id, movie_id: movieId });
-      if (error) return toast.error("Could not update watchlist.");
+      if (error) {
+        toast.error("Could not update watchlist.");
+        return;
+      }
       toast.success("Added to watchlist.");
     }
     void queryClient.invalidateQueries({ queryKey: ["watchlist-entry", movieId, user.id] });
