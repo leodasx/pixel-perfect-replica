@@ -56,7 +56,10 @@ function WatchlistPage() {
 
   const remove = async (id: string) => {
     const { error } = await supabase.from("watchlist").delete().eq("id", id);
-    if (error) return toast.error("Could not remove from watchlist.");
+    if (error) {
+      toast.error("Could not remove from watchlist.");
+      return;
+    }
     toast.success("Removed from watchlist.");
     void queryClient.invalidateQueries({ queryKey: ["watchlist"] });
     void queryClient.invalidateQueries({ queryKey: ["watchlist-entry"] });
