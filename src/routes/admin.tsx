@@ -344,7 +344,10 @@ function Stat({ label, value }: { label: string; value: string | number }) {
   );
 }
 
-type MovieRow = typeof emptyMovie & { release_date: string | null; trailer_url: string | null };
+type MovieRow = Omit<typeof emptyMovie, "release_date" | "trailer_url"> & {
+  release_date: string | null;
+  trailer_url: string | null;
+};
 
 function MovieDialog({
   movie,
